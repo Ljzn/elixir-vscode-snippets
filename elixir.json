@@ -1,0 +1,115 @@
+{
+	// Place your snippets for elixir here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	"Application": {
+		"prefix": "defapp",
+		"body": [
+			"defmodule $1.Application do",
+			"  use Application",
+			"",
+			"  def start(_type, _args) do",
+			"    children = []",
+			"    Supervisor.start_link(children, strategy: :one_for_one)",
+			"  end",
+			"end"
+		],
+		"description": "Define a new application module."
+	},
+	"Supervisor": {
+		"prefix": "defsup",
+		"body": [
+			"defmodule $1.Supervisor do",
+			"  use Supervisor",
+			"",
+			"  def start_link(arg) do",
+			"    Supervisor.start_link(__MODULE__, arg, name: __MODULE__)",
+			"  end",
+			"",
+			"  def init(_arg) do",
+			"    children = [",
+			"      $2",
+			"    ]",
+			"",
+			"    Supervisor.init(children, strategy: :one_for_one)",
+			"  end",
+			"end"
+		],
+		"description": "Define a new supervisor module."
+	},
+	"DynamicSupervisor": {
+		"prefix": "defdsup",
+		"body": [
+			"defmodule $1.DynamicSupervisor do",
+			"  use DynamicSupervisor",
+			"",
+			"  def start_link(arg) do",
+			"    DynamicSupervisor.start_link(__MODULE__, arg, name: __MODULE__)",
+			"  end",
+			"",
+			"  def init(_arg) do",
+			"    DynamicSupervisor.init(strategy: :one_for_one)",
+			"  end",
+			"end"
+		],
+		"description": "Define a new dynamic_supervisor module."
+	},
+	"Task": {
+		"prefix": "deftas",
+		"body": [
+			"defmodule $1.Task do",
+			"  use Task",
+			"",
+			"  def start_link(arg) do",
+			"    Task.start_link(__MODULE__, :run, [arg])",
+			"  end",
+			"",
+			"  def run(arg) do",
+			"    $2",
+			"  end",
+			"end"
+		],
+		"description": "Define a new task module."
+	},
+	"GenServer": {
+		"prefix": "defser",
+		"body": [
+			"defmodule $1.Server do",
+			"  use GenServer",
+			"",
+			"  # Client",
+			"",
+			"  def start_link(arg) do",
+			"    GenServer.start_link(__MODULE__, arg)",
+			"  end",
+			"",
+			"  # Server (callbacks)",
+			"",
+			"  def handle_call(msg, _from, state) do",
+			"",
+			"  end",
+			"",
+			"  def handle_cast(msg, state) do",
+			"",
+			"  end",
+			"end"
+		],
+		"description": "Define a new gen_server module."
+	},
+	"Agent": {
+		"prefix": "defage",
+		"body": [
+			"defmodule $1.Agent do",
+			"  use Agent",
+			"",
+			"  def start_link(_) do",
+			"    Agent.start_link(fn -> $2 end, name: __MODULE__)",
+			"  end",
+			"",
+			"end"
+		],
+		"description": "Define a new agent module."
+	},
+}
